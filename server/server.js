@@ -55,7 +55,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Serve React production build
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(clientDistPath));
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     if (req.path.startsWith("/api")) {
       return res.status(404).json({ success: false, message: "Not found" });
     }
