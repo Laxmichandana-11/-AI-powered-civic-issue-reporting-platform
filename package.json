@@ -1,18 +1,13 @@
 {
-  "name": "ai-civic-issue-reporting-system",
   "private": true,
+  "name": "civix-workspace",
   "version": "1.0.0",
-  "workspaces": [
-    "client",
-    "server"
-  ],
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace server\" \"npm run dev --workspace client\"",
-    "build": "npm run build --workspace client",
-    "start": "npm run start --workspace server",
-    "install-all": "npm install"
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "start": "npm --prefix backend start",
+    "install-all": "npm install --prefix backend && npm install --prefix frontend"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.2"
   }
 }

@@ -1,175 +1,53 @@
-Project Title:
-AI-Powered Civic Issue Reporting Platform
+<h1 align="center">🗣️ Meri Awaj</h1>
 
-An intelligent MERN stack web application that enables citizens to report civic issues such as potholes, garbage dumps, water leakage, streetlight failures, and other public infrastructure problems. The platform leverages AI to classify reported issues, making complaint management faster and more efficient for authorities.
+<p align="center">
+  <b>Raise Your Voice, Make a Difference</b>  
+  <br>
+  A full-stack community-driven platform that empowers users to report, discuss, and resolve local civic issues together.
+</p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React.js-61DAFB?logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Backend-Node.js-339933?logo=node.js" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Cloud-Cloudinary-3448C5?logo=cloudinary" alt="Cloudinary" />
+  <img src="https://img.shields.io/badge/RealTime-Socket.io-black?logo=socket.io" alt="Socket.io" />
+</p>
 
-## Project Overview
+---
 
-The AI-Powered Civic Issue Reporting Platform provides a digital solution for citizens to report local civic issues using images, descriptions, and location information. The system helps government authorities prioritize, track, and resolve complaints through an interactive dashboard.
+## 🌍 Overview
 
+**Meri Awaj** is a civic engagement web app where users can raise issues in their communities — from potholes and waste management to public safety.  
+It brings citizens together to **report**, **discuss**, **compare**, and **resolve** problems through collective visibility.
 
-## Key Features
+---
 
-- 📍 Report civic issues with location
-- 📸 Upload issue images
-- 🤖 AI-based issue classification
-- 🗺️ Google Maps integration
-- 📊 Admin dashboard for complaint management
-- 🔐 Secure user authentication
-- 📱 Responsive user interface
-- 📈 Complaint tracking and status updates
-- 📝 Detailed issue descriptions
-- 🌍 Location-based issue visualization
+## ⚡ Tech Stack
 
-## Tech Stack
+### 🖥️ Frontend
+- ⚛️ React.js (Vite)
+- 💨 Tailwind CSS
+- 🎞️ Framer Motion (smooth animations)
+- 🔌 Axios (API calls)
+- 🌐 Socket.io-client (real-time updates)
 
-### Frontend
-- React.js
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Axios
-- React Router
+### ⚙️ Backend
+- 🟢 Node.js + Express.js
+- 🍃 MongoDB (Mongoose)
+- ☁️ Cloudinary (for image uploads)
+- 📦 Multer (file handling)
+- 🔑 JWT Authentication
+- ⚡ Socket.io (real-time notifications)
 
-### Backend
-- Node.js
-- Express.js
+---
 
-### Database
-- MongoDB
-- Mongoose
+## ✨ Key Features
 
-### AI / Machine Learning
-- AI-based issue categorization
-
-### Other Tools
-- Git
-- GitHub
-- Render (Deployment)
-- MongoDB Atlas
-
-## 📂 Project Structure
-
-AI-powered-civic-issue-reporting-platform/
-│
-├── client/
-│   ├── public/
-│   ├── src/
-│   ├── package.json
-│
-├── server/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   ├── server.js
-│   └── package.json
-│
-├── package.json
-└── README.md
-
-
-##  Installation
-
-### Clone the repository
-
-bash
-git clone https://github.com/Laxmichandana-11/-AI-powered-civic-issue-reporting-platform.git
-
-
-Move into the project
-
-bash
-cd -AI-powered-civic-issue-reporting-platform
-
-## Install Dependencies
-
-### Root
-
-bash
-npm install
-
-### Backend
-bash
-cd server
-npm install
-
-### Frontend
-bash
-cd client
-npm install
-
-## Environment Variables
-
-Create a `.env` file inside the **server** folder.
-env
-PORT=5000
-
-MONGODB_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
-
-## Run the Project
-
-### Backend
-bash
-cd server
-npm start
-
-### Frontend
-
-bash
-cd client
-npm start
-
-## Future Enhancements
-
-- Voice-based complaint reporting
-- Duplicate issue detection using AI
-- Push notifications
-- Email alerts
-- Real-time complaint tracking
-- Mobile application
-- Government dashboard analytics
-- AI severity prediction
-
-
-## Skills Demonstrated
-
-- Full Stack Web Development
-- MERN Stack Development
-- REST API Development
-- Authentication & Authorization
-- MongoDB Database Design
-- AI Integration
-- Responsive UI Design
-- Git & GitHub
-- Deployment
-- Software Engineering Best Practices
-
-## Learning Outcomes
-
-Through this project, I gained practical experience in:
-
-- Designing scalable web applications
-- Building RESTful APIs
-- Database modeling using MongoDB
-- Integrating AI features into web applications
-- Frontend and backend integration
-- Version control using Git
-- Full-stack project deployment
-
-## Author
-Laxmi Chandana Yanamandra
-
-GitHub:
-https://github.com/Laxmichandana-11
-
-LinkedIn:
-https://www.linkedin.com/in/chandanayanamandra
-
-## License
-
-This project is developed for educational and portfolio purposes.
+✅ **User Authentication** — Secure registration & login with JWT  
+🪪 **User Profiles** — Manage personal information  
+📸 **Report Issues** — Upload photos & describe problems in your area  
+🗳️ **Likes / Dislikes** — Vote on issues that matter to you  
+💬 **Comments** — Discuss with others in real-time  
+⚖️ **Compare Tab** — View and compare local issues  
+📢 **C**
