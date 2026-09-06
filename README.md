@@ -1,156 +1,113 @@
-<div align="center">
-
 # Civix
 
-### A civic issue reporting and community engagement platform
+Civix is a project I built to make it easier for people to report local civic problems and see what is happening in their area. A user can post an issue such as a pothole, an overflowing bin, a water problem, or a broken streetlight. Other users can then support the post, comment on it, and follow its progress.
 
-Citizens can report local problems, discuss issues, and help communities turn visibility into action.
+The project has two sides:
 
-</div>
+- a social feed for citizens
+- an admin area for reviewing issues and managing the platform
 
-## Overview
+## What I built
 
-Civix is a full-stack web application for reporting and coordinating around local civic issues such as damaged roads, overflowing waste bins, water problems, electricity outages, and public safety concerns.
+- Registration and login using JWT authentication
+- User profiles and profile picture support
+- Issue posts with a title, description, category, location, and optional image
+- Likes, dislikes, comments, and post deletion for the post owner
+- A recent-post feed on the home page
+- Categories for Road, Garbage, Water, Electricity, and Other
+- Community pages for discussions, polls, stories, questions, members, and spotlights
+- Compare pages for viewing civic information together
+- An admin dashboard with issue and report charts
+- Admin search, filtering, pagination, status changes, and user blocking
+- Socket.IO updates for changes to the issue feed
 
-The platform combines a social feed with structured issue management. Users can publish issues with descriptions, locations, and images, then support them through likes, dislikes, and comments. Administrators can review activity, moderate reports, update issue statuses, and manage blocked users from a dedicated dashboard.
-
-## Core Features
-
-- JWT-based registration and login
-- User profiles with editable personal information and avatars
-- Recent issue feed with likes, dislikes, comments, and post ownership controls
-- Issue categories: Road, Garbage, Water, Electricity, and Other
-- Image uploads through Multer and Cloudinary
-- Real-time issue updates using Socket.IO
-- Community spaces with discussions, polls, stories, questions, members, and spotlights
-- Compare views for civic issues and areas
-- Admin dashboard with status charts, search, filtering, pagination, and moderation controls
-- User blocking and unblocking for administrators
-
-## Technology Stack
+## Tech stack
 
 ### Frontend
 
-- React 19 with Vite
+- React and Vite
 - React Router
 - Tailwind CSS
 - Axios
 - Framer Motion
 - Lucide React
 - Socket.IO Client
-- React Hot Toast
 
 ### Backend
 
-- Node.js
-- Express 5
+- Node.js and Express
 - MongoDB with Mongoose
-- JSON Web Tokens
-- bcryptjs
-- Multer
-- Cloudinary
+- JWT and bcryptjs
+- Multer for upload handling
+- Cloudinary for storing images
 - Socket.IO
 
-## Architecture
+## How the application works
 
-```text
-React + Vite frontend
-        |
-        | Axios REST requests and Socket.IO events
-        v
-Express API server
-        |
-        | Mongoose data access
-        v
-MongoDB
-```
+The frontend is a React application in `frontend/`. It calls the Express API in `backend/` using Axios. The backend validates requests, checks authentication when necessary, and reads or writes data through Mongoose.
 
-The backend follows a route-controller-model structure:
+When a user logs in, the backend returns a JWT. The frontend stores it and sends it with protected requests. The backend middleware verifies the token and adds the current user to the request before allowing the controller to run.
+
+An issue starts with a `pending` status. An admin can later change it to `reviewed`, `action_taken`, or `dismissed`. The admin dashboard shows the status totals as charts and gives the admin access to the issue and report details.
+
+## Project structure
 
 ```text
 backend/
-  config/          Database and Cloudinary configuration
-  controllers/     Request and business logic
-  middleware/      Authentication and upload middleware
+  config/          MongoDB and Cloudinary configuration
+  controllers/     API logic
+  middleware/      Authentication and file upload middleware
   models/          Mongoose schemas
-  routes/          Express API routes
-  scripts/         Development data utilities
-  server.js        Application entry point
+  routes/          Express routes
+  scripts/         Development seed script
+  server.js        Backend entry point
 
 frontend/src/
-  api/             API clients
-  components/      Reusable UI components
-  context/         Shared user state
-  pages/           Application screens
-  App.jsx          Route definitions
+  api/             API helpers
+  components/      Shared React components
+  context/         User context
+  pages/           Application pages
+  App.jsx          Frontend routes
 ```
 
-## Authentication and Authorization
+## Run the project locally
 
-Passwords are hashed with bcrypt before storage. After registration or login, the backend returns a JWT that the frontend stores locally and sends with protected requests using the `Authorization: Bearer <token>` header.
-
-Protected routes require a valid token. Admin routes also require the authenticated user's role to be `admin`. Authorization is checked in both the frontend route guard and backend middleware.
-
-## Issue Lifecycle
-
-1. An authenticated user submits a title, description, category, location, and optional image.
-2. Multer receives the upload and Cloudinary stores the image.
-3. The issue is saved in MongoDB with its author and initial `pending` status.
-4. Other users can like, dislike, and comment on the issue.
-5. An administrator can change the status to `reviewed`, `action_taken`, or `dismissed`.
-6. Socket.IO can notify connected clients when issue data changes.
-
-## API Areas
-
-| Area | Base path | Purpose |
-| --- | --- | --- |
-| Authentication | `/api/auth` | Registration, login, and profiles |
-| Issues | `/api/issues` | Create, list, vote, comment, and delete issues |
-| Communities | `/api/community` | Community management |
-| Discussions | `/api/discussions` | Community discussions |
-| Polls | `/api/polls` | Poll creation and voting |
-| Comparisons | `/api/compare` | Civic comparison workflows |
-| Reports | `/api/reports` | User reports and moderation data |
-| Administration | `/api/admin` | Dashboard summaries and moderation |
-
-## Local Development
-
-### Prerequisites
+### Requirements
 
 - Node.js 18 or newer
-- MongoDB, or a MongoDB Atlas connection string
-- Cloudinary account for hosted image uploads
+- MongoDB or a MongoDB Atlas database
+- A Cloudinary account if image uploads are needed
 
-### Installation
-
-From the repository root:
+Install the root, backend, and frontend dependencies:
 
 ```bash
 npm install
 npm run install-all
 ```
 
-Create an environment file from the example:
+Create the backend environment file.
+
+On Windows:
 
 ```bash
 copy backend\.env.example backend\.env
 ```
 
-On macOS or Linux, use:
+On macOS or Linux:
 
 ```bash
 cp backend/.env.example backend/.env
 ```
 
-Set the values in `backend/.env`, then start both applications:
+Add the required values to `backend/.env`, then start both applications from the root:
 
 ```bash
 npm run dev
 ```
 
-The frontend runs at `http://localhost:5173` and the backend runs at `http://localhost:4000`.
+The frontend runs on `http://localhost:5173` and the backend runs on `http://localhost:4000`.
 
-To run them separately:
+To start them separately:
 
 ```bash
 cd backend
@@ -162,9 +119,7 @@ cd frontend
 npm run dev
 ```
 
-## Environment Variables
-
-Configure these values in `backend/.env`:
+## Environment variables
 
 ```env
 MONGO_URI=your_mongodb_connection_string
@@ -175,23 +130,28 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 PORT=4000
 ```
 
-Never commit real credentials. The example file contains placeholders only.
+I have kept the values out of the repository. The example file only contains placeholders, and real credentials should be stored in `backend/.env`.
 
-## Demo Data
+## Demo data
 
-The repository includes a repeatable development seed script that creates five demo users, one issue for each category, and sample likes:
+For local testing, the project includes a seed script. It creates five demo users, one issue in each category, and sample likes on the posts.
 
 ```bash
 cd backend
 node scripts/seedDemoData.js
 ```
 
-The demo accounts use the password `CivixDemo2026!`. These accounts are intended only for local development and demonstrations.
+All demo users use the password `CivixDemo2026!`. These accounts are only for local development and demonstrations.
 
-## Production Considerations
+## Things I would improve next
 
-Before deploying Civix, configure a permanent MongoDB database, rotate all secrets, restrict CORS to trusted frontend origins, validate uploaded file types and sizes, and disable development fallback credentials. Production deployments should also use server-side pagination, automated tests, monitoring, and refresh-token or secure cookie-based authentication.
+- Add automated frontend and backend tests
+- Add server-side pagination for the main issue feed
+- Move authentication to secure cookies or add refresh tokens
+- Add stronger file type and file size validation
+- Add notifications when an issue status changes
+- Add a proper production deployment configuration
 
-## License
+## Note
 
-This project is intended for educational and portfolio use. Add a project-specific license before distributing it as an open-source package.
+This is a learning and portfolio project. It is functional for local development, but the environment secrets, admin setup, and deployment configuration should be reviewed before using it with real civic data.
